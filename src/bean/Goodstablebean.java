@@ -14,6 +14,7 @@ public class Goodstablebean implements Bean {
     private Integer left;
     private String type;
     private Integer state;
+    private String imgUrl;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -101,5 +102,15 @@ public class Goodstablebean implements Bean {
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "imgUrl", nullable = true, length = 255)
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

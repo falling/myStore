@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * 通用DAO实现最基本的增删查改
@@ -76,5 +77,14 @@ public class DAOImpl implements DAO {
         Object object = session.get(bean.getClass(), bean.getId());
         session.getTransaction().commit();
         return object;
+    }
+
+    @Override
+    public List getAll(Class c) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List list = session.createQuery("from " + c.getSimpleName()).list();
+        session.getTransaction().commit();
+        return list;
     }
 }

@@ -41,6 +41,7 @@
                 用户名:<input type="text" name="user.username" class="form-control">
                 密码:<input type="password" name="user.password" class="form-control">
             </div>
+            <input type="button" value="注册" class="btn btn-default pull-right" onclick="location='error.jsp'">
             <input type="submit" value="登陆" class="btn btn-primary pull-right">
         </form>
     </div>

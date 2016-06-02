@@ -2,6 +2,8 @@ package dao;
 
 import bean.Bean;
 
+import java.util.List;
+
 /**
  * Created by falling on 16/5/28.
  */
@@ -30,4 +32,10 @@ public interface DAO {
      * @return
      */
     Object get(Bean bean);
+
+    /**
+     * 获取全部的信息
+     * @return
+     */
+    List getAll(Class c);
 }

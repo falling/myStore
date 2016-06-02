@@ -1,9 +1,16 @@
 package action;
 
-import bean.Bean;
 import bean.Usertablebean;
-import dao.DAO;
-import dao.DAOImpl;
+import dao.UserDAO;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
+
+import javax.servlet.http.HttpSession;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * Created by falling on 2016/6/1.
@@ -20,14 +27,12 @@ public class LoginAction {
     }
 
     public String execute() throws Exception {
-        System.out.println(user.getUsername() + user.getPassword());
-        DAO dao = new DAOImpl();
-        Bean bean = new Usertablebean();
-        bean.setId(1);
-        Usertablebean a  = (Usertablebean) dao.get(bean);
-        System.out.println(a.getUsername());
-        if(user.getUsername().equals("test"))
-            return "error";
-        return "success";
+        UserDAO dao = new UserDAO();
+        Usertablebean loginUser = dao.getByUsername(user);
+        if (loginUser != null) {
+            ServletActionContext.getRequest().getSession().setAttribute("user",loginUser);
+            return loginUser.getPermission();
+        }
+        return "error";
     }
 }
