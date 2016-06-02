@@ -36,7 +36,7 @@
         <div class="panel-heading">
             Login
         </div>
-        <form action="Login.action" method="post"  class="panel-body">
+        <form action="login.action" method="post" class="panel-body">
             <div class="form-group">
                 用户名:<input type="text" name="user.username" class="form-control">
                 密码:<input type="password" name="user.password" class="form-control">

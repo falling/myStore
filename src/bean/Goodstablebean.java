@@ -3,18 +3,18 @@ package bean;
 import javax.persistence.*;
 
 /**
- * Created by falling on 2016/5/26.
+ * Created by falling on 2016/6/2.
  */
 @Entity
-@Table(name = "goodstable", schema = "store")
+@Table(name = "goodstable", schema = "store", catalog = "")
 public class Goodstablebean implements Bean {
     private int id;
     private String name;
     private Double price;
-    private Integer left;
+    private Integer count;
     private String type;
-    private Integer state;
     private String imgUrl;
+    private Integer state;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -47,13 +47,13 @@ public class Goodstablebean implements Bean {
     }
 
     @Basic
-    @Column(name = "left", nullable = true)
-    public Integer getLeft() {
-        return left;
+    @Column(name = "count", nullable = true)
+    public Integer getCount() {
+        return count;
     }
 
-    public void setLeft(Integer left) {
-        this.left = left;
+    public void setCount(Integer left) {
+        this.count = left;
     }
 
     @Basic
@@ -64,6 +64,16 @@ public class Goodstablebean implements Bean {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Basic
+    @Column(name = "imgUrl", nullable = true, length = 255)
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Basic
@@ -86,8 +96,9 @@ public class Goodstablebean implements Bean {
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (price != null ? !price.equals(that.price) : that.price != null) return false;
-        if (left != null ? !left.equals(that.left) : that.left != null) return false;
+        if (count != null ? !count.equals(that.count) : that.count != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (imgUrl != null ? !imgUrl.equals(that.imgUrl) : that.imgUrl != null) return false;
         if (state != null ? !state.equals(that.state) : that.state != null) return false;
 
         return true;
@@ -98,19 +109,10 @@ public class Goodstablebean implements Bean {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (left != null ? left.hashCode() : 0);
+        result = 31 * result + (count != null ? count.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (imgUrl != null ? imgUrl.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "imgUrl", nullable = true, length = 255)
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 }

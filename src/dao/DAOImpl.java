@@ -35,14 +35,14 @@ public class DAOImpl implements DAO {
     @Override
     public void update(Bean bean) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        String PKValue = "";
+        int PKValue = -1;
 
         //获取PK的值。
         Method[] methods = bean.getClass().getDeclaredMethods();
         for (Method method : methods) {
             if (method.getAnnotation(Id.class) != null) {
                 try {
-                    PKValue = (String) method.invoke(bean);
+                    PKValue = (int) method.invoke(bean);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
@@ -51,6 +51,7 @@ public class DAOImpl implements DAO {
 
         session.beginTransaction();
         Object oldBean = session.get(bean.getClass(), PKValue);
+
         if (oldBean != null) {
             Field[] fields = oldBean.getClass().getDeclaredFields();
             for (Field field : fields) {
@@ -64,7 +65,7 @@ public class DAOImpl implements DAO {
                     e.printStackTrace();
                 }
             }
-//            session.update(oldBean);
+            session.update(oldBean);
             session.getTransaction().commit();
         }
 
@@ -83,7 +84,7 @@ public class DAOImpl implements DAO {
     public List getAll(Class c) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        List list = session.createQuery("from " + c.getSimpleName()).list();
+        List list = session.createQuery("from " + c.getSimpleName() + " where state = 0").list();
         session.getTransaction().commit();
         return list;
     }

@@ -58,16 +58,16 @@
         <tr>
             <td><%= good.getName() %>
             </td>
-            <td><img src="<%= good.getImgUrl() %>"/>
+            <td><img src="<%= good.getImgUrl() %>" height="50" width="50"/>
             </td>
             <td><%= good.getPrice()%>
             </td>
             <td><%= good.getType() %>
             </td>
-            <td><%= good.getLeft() %>
+            <td><%= good.getCount() %>
             </td>
-            <td data-foodId= <%= good.getId() %>>
-                <button class="btn btn-danger btn-delete-food">删除</button>
+            <td data-goodId= <%= good.getId() %>>
+                <button class="btn btn-danger btn-delete-good">删除</button>
                 <button type="button" class="btn btn-warning btn-update-good" data-toggle="modal" data-target="#updateGood">
                     修改
                 </button>
@@ -79,7 +79,7 @@
     </table>
 </div>
 
-<!-- 添加食物窗口 -->
+<!-- 添加商品窗口 -->
 <div class="modal fade" id="addGood" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -90,14 +90,14 @@
             </div>
             <div class="form-inline">
                 <div class="form-group">
-                    商品名称 <input type="text" name="title" class="form-control" id="add-foodname">
+                    商品名称 <input type="text" name="title" class="form-control" id="add-goodname">
                 </div>
                 <div class="form-group">
-                    商品价格 <input type="text" name="title" class="form-control" id="add-foodprice">
+                    商品价格 <input type="text" name="title" class="form-control" id="add-goodprice">
                 </div>
                 <div class="form-group">
                     类型
-                    <select class="form-control" id="add-foodType">
+                    <select class="form-control" id="add-goodType">
                         <option>饮料</option>
                         <option>肉类</option>
                         <option>素类</option>
@@ -123,17 +123,17 @@
             </div>
             <div class="form-inline">
                 <div class="form-group">
-                    商品名称 <input type="text" name="title" class="form-control" id="update-foodname">
+                    商品名称 <input type="text" name="title" class="form-control" id="update-goodname">
                 </div>
                 <div class="form-group">
                     商品价格 <input type="text" name="title" class="form-control" id="update-goodprice">
                 </div>
                 <div class="form-group">
-                    剩下数量 <input type="text" name="title" class="form-control" id="update-goodprice">
+                    剩下数量 <input type="text" name="title" class="form-control" id="update-goodleft">
                 </div>
                 <div class="form-group">
                     类型
-                    <select class="form-control" id="update-foodType">
+                    <select class="form-control" id="update-goodType">
                         <option>饮料</option>
                         <option>肉类</option>
                         <option>素类</option>
@@ -160,9 +160,9 @@
                 url: "/addFood",
                 type: 'post',
                 data: {
-                    foodname:$('#add-foodname').val(),
-                    foodprice:$('#add-foodprice').val(),
-                    foodtype:$('#add-foodType').val()
+                    goodname:$('#add-goodname').val(),
+                    goodprice:$('#add-goodprice').val(),
+                    goodtype:$('#add-goodType').val()
                 }
             }).success(function () {
                 alert("成功");
@@ -170,13 +170,13 @@
             });
         });
 
-        $(".btn-delete-food").click(function(){
-            var foodid = $(this).parent().attr("data-foodId");
+        $(".btn-delete-good").click(function(){
+            var goodid = $(this).parent().attr("data-goodId");
             $.ajax({
                 url: "/deleteFood",
                 type: 'post',
                 data: {
-                    id:foodid
+                    id:goodid
                 }
             }).success(function () {
                 alert("删除成功");
@@ -186,36 +186,40 @@
 
 
         //搬运数据
-        var foodid = 0;
-        $(".btn-update-food").click(function(){
-            foodid = $(this).parent().attr("data-foodId");
+        var goodid = 0;
+        $(".btn-update-good").click(function(){
+            goodid = $(this).parent().attr("data-goodId");
 
             var $tr = $(this).parent().prevAll();
 
-            $('#update-foodprice').val($tr.eq(1).html());
-            $('#update-foodname').val($tr.eq(2).html());
+            $('#update-goodname').val($tr.eq(4).html().trim());
+            $('#update-goodprice').val($tr.eq(2).html().trim());
+            $('#update-goodleft').val($tr.eq(0).html().trim());
 
-            if( $tr.eq(0).html().trim() == '荤'){
-                $('#update-foodType option').eq(0).attr("selected","selected");
+            if( $tr.eq(1).html().trim() == '素类'){
+                $('#update-goodType option').eq(2).attr("selected","selected");
             }
-            else {
-                $('#update-foodType option').eq(1).attr("selected","selected");
+            else if($tr.eq(1).html().trim() == '肉类'){
+                $('#update-goodType option').eq(1).attr("selected","selected");
+            }else{
+                $('#update-goodType option').eq(0).attr("selected","selected");
             }
         });
 
         $('#update-do').click(function () {
             $.ajax({
-                url: "/updateFood",
+                url: "updateGoods.action",
                 type: 'post',
                 data: {
-                    id:foodid,
-                    foodname:$('#update-foodname').val(),
-                    foodprice:$('#update-foodprice').val(),
-                    foodtype:$('#update-foodType').val()
+                    id:goodid,
+                    goodname:$('#update-goodname').val(),
+                    goodprice:$('#update-goodprice').val(),
+                    goodtype:$('#update-goodType').val(),
+                    goodleft:$('#update-goodleft').val()
                 }
             }).success(function () {
                 alert("修改成功");
-                location.reload("/adminFood");
+                location.reload();
             });
         });
     })
