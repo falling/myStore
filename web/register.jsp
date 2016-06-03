@@ -58,7 +58,6 @@
                 url: "register",
                 type: 'post',
                 data: {
-                    "bean.id":goodid,
                     "bean.username":$('#username').val(),
                     "bean.password":$('#password').val(),
                     "bean.tel":$('#tel').val(),
@@ -66,7 +65,7 @@
                 }
             }).success(function(){
                 alert("注册成功");
-                location('login.jsp');
+                self.location ='login.jsp';
             }).error(function () {
                 alert("注册失败，可能有同名的用户");
             })

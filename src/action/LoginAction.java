@@ -9,7 +9,6 @@ import org.apache.struts2.ServletActionContext;
  */
 public class LoginAction {
     private Usertablebean user;
-    private String msg;
 
     public Usertablebean getUser() {
         return user;

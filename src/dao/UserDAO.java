@@ -35,13 +35,17 @@ public class UserDAO extends DAOImpl {
      */
     public boolean register(Usertablebean bean){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List list = session.createQuery("from " + bean.getClass().getSimpleName() + " where  username = '" + bean.getUsername() + "'").list();
-        if(list.isEmpty()){
-            session.save(bean);
-            return true;
+        try {
+            session.beginTransaction();
+            List list = session.createQuery("from " + bean.getClass().getSimpleName() + " where  username = '" + bean.getUsername() + "'").list();
+            if(list.isEmpty()){
+                session.save(bean);
+                return true;
+            }
+            return false;
+        } finally {
+            session.getTransaction().commit();
         }
-        return false;
 
     }
 

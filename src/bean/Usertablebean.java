@@ -56,7 +56,7 @@ public class Usertablebean implements Bean {
     }
 
     @Basic
-    @Column(name = "permission", nullable = true, length = 255)
+    @Column(name = "permission", nullable = false, length = 255, insertable = false)
     public String getPermission() {
         return permission;
     }
