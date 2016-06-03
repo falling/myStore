@@ -6,27 +6,23 @@
 
 <struts>
     <package name="action" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="myInterceptor" class="interceptor.LoginInterceptor"/>
+        </interceptors>
+
         <action name="login" class="action.LoginAction" method="execute">
-            <result name="admin" type="redirectAction">loadGoods</result>
+            <result name="admin" type="redirectAction">goods</result>
             <result name="customer">main.jsp</result>
             <result name="error">login.jsp</result>
         </action>
-
-        <action name="loadGoods" class="action.GoodsLoadAction" method="execute">
-            <result name="success">admin_good.jsp</result>
-        </action>
-
-        <action name="updateGoods" class="action.GoodsUpdateAction" method="execute">
+        <action name="goods" class="action.GoodsAction" method="execute">
+            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="myInterceptor"/>
+            <result name="load">admin_good.jsp</result>
             <result name="success">success.jsp</result>
         </action>
 
-        <action name="addGoods" class="action.GoodsAddAction" method="execute">
-            <result name="success">success.jsp</result>
-        </action>
-
-        <action name="deleteGoods" class="action.GoodsDeleteAction" method="execute">
-            <result name="success">success.jsp</result>
-        </action>
 
         <action name="register" class="action.RegisterAction" method="execute">
 

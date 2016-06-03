@@ -15,7 +15,7 @@ public class Goodstablebean implements Bean {
     private String type;
     private String imgUrl;
     private Integer state;
-
+    private String action;
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {
@@ -86,34 +86,12 @@ public class Goodstablebean implements Bean {
         this.state = state;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Goodstablebean that = (Goodstablebean) o;
-
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
-        if (count != null ? !count.equals(that.count) : that.count != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (imgUrl != null ? !imgUrl.equals(that.imgUrl) : that.imgUrl != null) return false;
-        if (state != null ? !state.equals(that.state) : that.state != null) return false;
-
-        return true;
+    @Transient
+    public String getAction() {
+        return action;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (count != null ? count.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (imgUrl != null ? imgUrl.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        return result;
+    public void setAction(String action) {
+        this.action = action;
     }
-
 }

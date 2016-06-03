@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>登陆</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-<h1 class="text-center">Project Manager</h1>
+<h1 class="text-center">登陆</h1>
 <h2 class="text-danger">${requestScope.msg}</h2>
 
 <div id="login">
@@ -41,7 +41,7 @@
                 用户名:<input type="text" name="user.username" class="form-control">
                 密码:<input type="password" name="user.password" class="form-control">
             </div>
-            <input type="button" value="注册" class="btn btn-default pull-right" onclick="location='error.jsp'">
+            <input type="button" value="注册" class="btn btn-default pull-right" onclick="location='register.jsp'">
             <input type="submit" value="登陆" class="btn btn-primary pull-right">
         </form>
     </div>

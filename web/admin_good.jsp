@@ -160,13 +160,14 @@
         //增加新Good
         $('#add-do').click(function () {
             $.ajax({
-                url: "addGoods",
+                url: "goods",
                 type: 'post',
                 data: {
                     "bean.name":$('#add-goodname').val(),
                     "bean.price":$('#add-goodprice').val(),
                     "bean.type":$('#add-goodType').val(),
-                    "bean.count":$('#add-goodcount').val()
+                    "bean.count":$('#add-goodcount').val(),
+                    "bean.action":"add"
                 }
             }).success(function () {
                 alert("成功");
@@ -176,13 +177,15 @@
             });
         });
 
+        //删除数据
         $(".btn-delete-good").click(function(){
             var goodid = $(this).parent().attr("data-goodId");
             $.ajax({
-                url: "deleteGoods",
+                url: "goods",
                 type: 'post',
                 data: {
-                    "bean.id":goodid
+                    "bean.id":goodid,
+                    "bean.action":"delete"
                 }
             }).success(function () {
                 alert("删除成功");
@@ -191,7 +194,7 @@
         });
 
 
-        //搬运数据
+        //修改数据
         var goodid = 0;
         $(".btn-update-good").click(function(){
             goodid = $(this).parent().attr("data-goodId");
@@ -214,19 +217,20 @@
 
         $('#update-do').click(function () {
             $.ajax({
-                url: "updateGoods",
+                url: "goods",
                 type: 'post',
                 data: {
                     "bean.id":goodid,
                     "bean.name":$('#update-goodname').val(),
                     "bean.price":$('#update-goodprice').val(),
                     "bean.type":$('#update-goodType').val(),
-                    "bean.count":$('#update-goodcount').val()
+                    "bean.count":$('#update-goodcount').val(),
+                    "bean.action":"update"
                 }
             }).success(function () {
                 alert("修改成功");
                 location.reload();
-            });
+            })
         });
     })
 </script>

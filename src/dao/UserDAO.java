@@ -13,7 +13,6 @@ import java.util.List;
 public class UserDAO extends DAOImpl {
     /**
      * 登陆
-     *
      * @param bean
      * @return
      */
@@ -27,6 +26,23 @@ public class UserDAO extends DAOImpl {
         }
         session.getTransaction().commit();
         return user;
+    }
+
+    /**
+     * 注册
+     * @param bean
+     * @return
+     */
+    public boolean register(Usertablebean bean){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List list = session.createQuery("from " + bean.getClass().getSimpleName() + " where  username = '" + bean.getUsername() + "'").list();
+        if(list.isEmpty()){
+            session.save(bean);
+            return true;
+        }
+        return false;
+
     }
 
 }

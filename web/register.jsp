@@ -29,14 +29,12 @@
 <body>
 <h1 class="text-center">注册</h1>
 
-<h2 class="text-danger">${requestScope.msg}</h2>
-
 <div id="register">
     <div class="panel panel-primary">
         <div class="panel-heading">
             Register
         </div>
-        <form action="register.action" method="post" onsubmit="return check()" class="panel-body">
+        <form onkeydown="if(event.keyCode==13)submit.click();" class="panel-body">
             <div class="form-group">
                 用户名:<input type="text" name="user.username" class="form-control" id="username">
                 密码:<input type="password" name="user.password" class="form-control" id="password">
@@ -44,7 +42,7 @@
                 姓名:<input type="text" name="user.name" class="form-control" id="name">
             </div>
             <input type="button" value="返回" class="btn btn-default pull-right" onclick="location='login.jsp'">
-            <input type="button" value="注册" class="btn btn-primary pull-right" onclick="check()">
+            <input type="button" value="注册" class="btn btn-primary pull-right" id="submit">
         </form>
     </div>
 </div>
@@ -53,6 +51,29 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script>
+
+    $('#submit').click(function () {
+        if(check()){
+            $.ajax({
+                url: "register",
+                type: 'post',
+                data: {
+                    "bean.id":goodid,
+                    "bean.username":$('#username').val(),
+                    "bean.password":$('#password').val(),
+                    "bean.tel":$('#tel').val(),
+                    "bean.name":$('#name').val()
+                }
+            }).success(function(){
+                alert("注册成功");
+                location('login.jsp');
+            }).error(function () {
+                alert("注册失败，可能有同名的用户");
+            })
+        }
+    });
+
+
     function check() {
         if ($('#username').val() == "") {
             alert("用户名不能为空");
@@ -77,6 +98,8 @@
         var pattern = /^1[34578]\d{9}$/;
         return pattern.test(phone);
     }
+
+
 </script>
 
 </body>
