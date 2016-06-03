@@ -177,7 +177,7 @@
         $(".btn-delete-good").click(function(){
             var goodid = $(this).parent().attr("data-goodId");
             $.ajax({
-                url: "/deleteFood",
+                url: "deleteGoods",
                 type: 'post',
                 data: {
                     id:goodid

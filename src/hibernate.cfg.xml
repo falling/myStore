@@ -29,7 +29,6 @@
         <property name="connection.characterEncoding">utf8</property>
         <property name="connection.username">root</property>
         <property name="connection.password">wdqqhmm</property>
-
         <!-- SQL dialect -->
         <!--         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
          -->
@@ -50,8 +49,6 @@
         <mapping class="bean.Itemtablebean"/>
         <mapping class="bean.Ordertablebean"/>
         <mapping class="bean.Usertablebean"/>
-
-
     </session-factory>
 </hibernate-configuration>
 
