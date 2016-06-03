@@ -96,6 +96,9 @@
                     商品价格 <input type="text" name="title" class="form-control" id="add-goodprice">
                 </div>
                 <div class="form-group">
+                    数量 <input type="text" name="title" class="form-control" id="add-goodcount">
+                </div>
+                <div class="form-group">
                     类型
                     <select class="form-control" id="add-goodType">
                         <option>饮料</option>
@@ -129,7 +132,7 @@
                     商品价格 <input type="text" name="title" class="form-control" id="update-goodprice">
                 </div>
                 <div class="form-group">
-                    剩下数量 <input type="text" name="title" class="form-control" id="update-goodleft">
+                    剩下数量 <input type="text" name="title" class="form-control" id="update-goodcount">
                 </div>
                 <div class="form-group">
                     类型
@@ -154,19 +157,20 @@
 <script>
     $(function () {
 
-        //增加新Food
+        //增加新Good
         $('#add-do').click(function () {
             $.ajax({
-                url: "/addFood",
+                url: "addGoods",
                 type: 'post',
                 data: {
                     goodname:$('#add-goodname').val(),
                     goodprice:$('#add-goodprice').val(),
-                    goodtype:$('#add-goodType').val()
+                    goodtype:$('#add-goodType').val(),
+                    goodcount:$('#add-goodcount').val()
                 }
             }).success(function () {
                 alert("成功");
-               location.reload("/adminFood");
+               location.reload();
             });
         });
 
@@ -180,7 +184,7 @@
                 }
             }).success(function () {
                 alert("删除成功");
-                location.reload("/adminFood");
+                location.reload();
             });
         });
 
@@ -194,7 +198,7 @@
 
             $('#update-goodname').val($tr.eq(4).html().trim());
             $('#update-goodprice').val($tr.eq(2).html().trim());
-            $('#update-goodleft').val($tr.eq(0).html().trim());
+            $('#update-goodcount').val($tr.eq(0).html().trim());
 
             if( $tr.eq(1).html().trim() == '素类'){
                 $('#update-goodType option').eq(2).attr("selected","selected");
@@ -208,14 +212,14 @@
 
         $('#update-do').click(function () {
             $.ajax({
-                url: "updateGoods.action",
+                url: "updateGoods",
                 type: 'post',
                 data: {
                     id:goodid,
                     goodname:$('#update-goodname').val(),
                     goodprice:$('#update-goodprice').val(),
                     goodtype:$('#update-goodType').val(),
-                    goodleft:$('#update-goodleft').val()
+                    goodcount:$('#update-goodcount').val()
                 }
             }).success(function () {
                 alert("修改成功");

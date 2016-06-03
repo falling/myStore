@@ -6,21 +6,13 @@ import dao.DAOImpl;
 /**
  * Created by falling on 2016/6/2.
  */
-public class GoodsUpdateAction {
+public class GoodsAddAction {
 
-    private int id;
     private String goodname;
     private double goodprice;
     private String goodtype;
     private int goodcount;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getGoodname() {
         return goodname;
@@ -30,11 +22,11 @@ public class GoodsUpdateAction {
         this.goodname = goodname;
     }
 
-    public Double getGoodprice() {
+    public double getGoodprice() {
         return goodprice;
     }
 
-    public void setGoodprice(Double goodprice) {
+    public void setGoodprice(double goodprice) {
         this.goodprice = goodprice;
     }
 
@@ -54,14 +46,15 @@ public class GoodsUpdateAction {
         this.goodcount = goodcount;
     }
 
+
+
     public String execute() throws Exception {
         Goodstablebean bean = new Goodstablebean();
-        bean.setId(id);
         bean.setName(goodname);
         bean.setCount(goodcount);
         bean.setType(goodtype);
         bean.setPrice(goodprice);
-        new DAOImpl().update(bean);
+        new DAOImpl().save(bean);
         return "success";
     }
 }

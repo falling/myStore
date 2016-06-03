@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by falling on 2016/6/2.
  */
 @Entity
-@Table(name = "goodstable", schema = "store", catalog = "")
+@Table(name = "goodstable", schema = "store")
 public class Goodstablebean implements Bean {
     private int id;
     private String name;
@@ -67,7 +67,7 @@ public class Goodstablebean implements Bean {
     }
 
     @Basic
-    @Column(name = "imgUrl", nullable = true, length = 255)
+    @Column(name = "imgUrl", nullable = false, length = 255, insertable = false)
     public String getImgUrl() {
         return imgUrl;
     }
@@ -77,7 +77,7 @@ public class Goodstablebean implements Bean {
     }
 
     @Basic
-    @Column(name = "state", nullable = true)
+    @Column(name = "state", nullable = false, insertable = false)
     public Integer getState() {
         return state;
     }
@@ -115,4 +115,5 @@ public class Goodstablebean implements Bean {
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
     }
+
 }
