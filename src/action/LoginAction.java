@@ -3,20 +3,13 @@ package action;
 import bean.Usertablebean;
 import dao.UserDAO;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.Session;
-
-import javax.servlet.http.HttpSession;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * Created by falling on 2016/6/1.
  */
 public class LoginAction {
     private Usertablebean user;
+    private String msg;
 
     public Usertablebean getUser() {
         return user;
@@ -28,11 +21,12 @@ public class LoginAction {
 
     public String execute() throws Exception {
         UserDAO dao = new UserDAO();
-        Usertablebean loginUser = dao.getByUsername(user);
+        Usertablebean loginUser = dao.login(user);
         if (loginUser != null) {
             ServletActionContext.getRequest().getSession().setAttribute("user",loginUser);
             return loginUser.getPermission();
         }
+        ServletActionContext.getRequest().setAttribute("msg","账号或者密码错误");
         return "error";
     }
 }

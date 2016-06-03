@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class UserDAO extends DAOImpl {
     /**
-     * 根据username、password获取。
+     * 登陆
      *
      * @param bean
      * @return
      */
-    public Usertablebean getByUsername(Usertablebean bean) {
+    public Usertablebean login(Usertablebean bean) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Usertablebean user = null;

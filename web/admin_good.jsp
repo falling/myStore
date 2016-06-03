@@ -88,7 +88,7 @@
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">添加商品</h4>
             </div>
-            <div class="form-inline">
+            <div class="panel-body">
                 <div class="form-group">
                     商品名称 <input type="text" name="title" class="form-control" id="add-goodname">
                 </div>
@@ -124,7 +124,7 @@
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">修改商品</h4>
             </div>
-            <div class="form-inline">
+            <div class="panel-body">
                 <div class="form-group">
                     商品名称 <input type="text" name="title" class="form-control" id="update-goodname">
                 </div>
@@ -163,14 +163,16 @@
                 url: "addGoods",
                 type: 'post',
                 data: {
-                    goodname:$('#add-goodname').val(),
-                    goodprice:$('#add-goodprice').val(),
-                    goodtype:$('#add-goodType').val(),
-                    goodcount:$('#add-goodcount').val()
+                    "bean.name":$('#add-goodname').val(),
+                    "bean.price":$('#add-goodprice').val(),
+                    "bean.type":$('#add-goodType').val(),
+                    "bean.count":$('#add-goodcount').val()
                 }
             }).success(function () {
                 alert("成功");
                location.reload();
+            }).error(function(){
+                alert("失败");
             });
         });
 
@@ -180,7 +182,7 @@
                 url: "deleteGoods",
                 type: 'post',
                 data: {
-                    id:goodid
+                    "bean.id":goodid
                 }
             }).success(function () {
                 alert("删除成功");
@@ -215,11 +217,11 @@
                 url: "updateGoods",
                 type: 'post',
                 data: {
-                    id:goodid,
-                    goodname:$('#update-goodname').val(),
-                    goodprice:$('#update-goodprice').val(),
-                    goodtype:$('#update-goodType').val(),
-                    goodcount:$('#update-goodcount').val()
+                    "bean.id":goodid,
+                    "bean.name":$('#update-goodname').val(),
+                    "bean.price":$('#update-goodprice').val(),
+                    "bean.type":$('#update-goodType').val(),
+                    "bean.count":$('#update-goodcount').val()
                 }
             }).success(function () {
                 alert("修改成功");

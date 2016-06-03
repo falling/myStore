@@ -8,52 +8,17 @@ import dao.DAOImpl;
  */
 public class GoodsAddAction {
 
-    private String goodname;
-    private double goodprice;
-    private String goodtype;
-    private int goodcount;
+    private Goodstablebean bean = new Goodstablebean();
 
-
-    public String getGoodname() {
-        return goodname;
+    public Goodstablebean getBean() {
+        return bean;
     }
 
-    public void setGoodname(String goodname) {
-        this.goodname = goodname;
+    public void setBean(Goodstablebean bean) {
+        this.bean = bean;
     }
-
-    public double getGoodprice() {
-        return goodprice;
-    }
-
-    public void setGoodprice(double goodprice) {
-        this.goodprice = goodprice;
-    }
-
-    public String getGoodtype() {
-        return goodtype;
-    }
-
-    public void setGoodtype(String goodtype) {
-        this.goodtype = goodtype;
-    }
-
-    public int getGoodcount() {
-        return goodcount;
-    }
-
-    public void setGoodcount(int goodcount) {
-        this.goodcount = goodcount;
-    }
-
-
 
     public String execute() throws Exception {
-        Goodstablebean bean = new Goodstablebean();
-        bean.setName(goodname);
-        bean.setCount(goodcount);
-        bean.setType(goodtype);
-        bean.setPrice(goodprice);
         new DAOImpl().save(bean);
         return "success";
     }

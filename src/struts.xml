@@ -27,5 +27,9 @@
         <action name="deleteGoods" class="action.GoodsDeleteAction" method="execute">
             <result name="success">success.jsp</result>
         </action>
+
+        <action name="register" class="action.RegisterAction" method="execute">
+
+        </action>
     </package>
 </struts>
