@@ -88,4 +88,16 @@ public class DAOImpl implements DAO {
         session.getTransaction().commit();
         return list;
     }
+
+    @Override
+    public List getAll(Class c,String sql) {
+        if(sql ==null){
+            return getAll(c);
+        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List list = session.createQuery("from " + c.getSimpleName() + sql).list();
+        session.getTransaction().commit();
+        return list;
+    }
 }

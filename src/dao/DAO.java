@@ -38,4 +38,12 @@ public interface DAO {
      * @return
      */
     List getAll(Class c);
+
+    /**
+     * 根据条件获取list
+     * @param c
+     * @param sql where开始的sql语句
+     * @return
+     */
+    List getAll(Class c,String sql);
 }

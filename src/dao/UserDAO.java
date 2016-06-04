@@ -37,7 +37,7 @@ public class UserDAO extends DAOImpl {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
-            List list = session.createQuery("from " + bean.getClass().getSimpleName() + " where  username = '" + bean.getUsername() + "'").list();
+            List list = session.createQuery(String.format("from %s where  username = '%s'", bean.getClass().getSimpleName(), bean.getUsername())).list();
             if(list.isEmpty()){
                 session.save(bean);
                 return true;

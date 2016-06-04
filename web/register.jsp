@@ -34,7 +34,7 @@
         <div class="panel-heading">
             Register
         </div>
-        <form onkeydown="if(event.keyCode==13)submit.click();" class="panel-body">
+        <form id="form" class="panel-body">
             <div class="form-group">
                 用户名:<input type="text" name="user.username" class="form-control" id="username">
                 密码:<input type="password" name="user.password" class="form-control" id="password">
@@ -42,7 +42,7 @@
                 姓名:<input type="text" name="user.name" class="form-control" id="name">
             </div>
             <input type="button" value="返回" class="btn btn-default pull-right" onclick="location='login.jsp'">
-            <input type="button" value="注册" class="btn btn-primary pull-right" id="submit">
+            <input type="submit" value="注册" class="btn btn-primary pull-right" >
         </form>
     </div>
 </div>
@@ -52,7 +52,7 @@
 
 <script>
 
-    $('#submit').click(function () {
+    $('#form').submit(function () {
         if(check()){
             $.ajax({
                 url: "register",

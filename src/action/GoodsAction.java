@@ -28,6 +28,7 @@ public class GoodsAction {
             ServletActionContext.getRequest().setAttribute("goodsList", good);
             return "load";
         }
+
         switch (bean.getAction()) {
             case "add":
                 new DAOImpl().save(bean);

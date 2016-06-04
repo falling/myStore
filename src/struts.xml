@@ -22,6 +22,9 @@
             <result name="load">admin_good.jsp</result>
             <result name="success">success.jsp</result>
         </action>
+        <action name="loadGoods" class="action.GoodsLoadAction" method="execute">
+
+        </action>
 
 
         <action name="register" class="action.RegisterAction" method="execute">

@@ -64,7 +64,7 @@
             </td>
             <td><%= good.getType() %>
             </td>
-            <td><%= good.getCount() %>
+            <td><%= good.getNumber() %>
             </td>
             <td data-goodId= <%= good.getId() %>>
                 <button class="btn btn-danger btn-delete-good">删除</button>
@@ -96,7 +96,7 @@
                     商品价格 <input type="text" name="title" class="form-control" id="add-goodprice">
                 </div>
                 <div class="form-group">
-                    数量 <input type="text" name="title" class="form-control" id="add-goodcount">
+                    数量 <input type="text" name="title" class="form-control" id="add-goodnumber">
                 </div>
                 <div class="form-group">
                     类型
@@ -132,7 +132,7 @@
                     商品价格 <input type="text" name="title" class="form-control" id="update-goodprice">
                 </div>
                 <div class="form-group">
-                    剩下数量 <input type="text" name="title" class="form-control" id="update-goodcount">
+                    剩下数量 <input type="text" name="title" class="form-control" id="update-goodnumber">
                 </div>
                 <div class="form-group">
                     类型
@@ -166,10 +166,11 @@
                     "bean.name":$('#add-goodname').val(),
                     "bean.price":$('#add-goodprice').val(),
                     "bean.type":$('#add-goodType').val(),
-                    "bean.count":$('#add-goodcount').val(),
+                    "bean.number":$('#add-goodnumber').val(),
                     "bean.action":"add"
                 }
             }).success(function () {
+
                 alert("成功");
                location.reload();
             }).error(function(){
@@ -203,7 +204,7 @@
 
             $('#update-goodname').val($tr.eq(4).html().trim());
             $('#update-goodprice').val($tr.eq(2).html().trim());
-            $('#update-goodcount').val($tr.eq(0).html().trim());
+            $('#update-goodnumber').val($tr.eq(0).html().trim());
 
             if( $tr.eq(1).html().trim() == '素类'){
                 $('#update-goodType option').eq(2).attr("selected","selected");
@@ -224,10 +225,10 @@
                     "bean.name":$('#update-goodname').val(),
                     "bean.price":$('#update-goodprice').val(),
                     "bean.type":$('#update-goodType').val(),
-                    "bean.count":$('#update-goodcount').val(),
+                    "bean.number":$('#update-goodnumber').val(),
                     "bean.action":"update"
                 }
-            }).success(function () {
+            }).success(function (data,textStatus) {
                 alert("修改成功");
                 location.reload();
             })

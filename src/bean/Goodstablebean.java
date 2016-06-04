@@ -11,7 +11,7 @@ public class Goodstablebean implements Bean {
     private int id;
     private String name;
     private Double price;
-    private Integer count;
+    private Integer number;
     private String type;
     private String imgUrl;
     private Integer state;
@@ -47,13 +47,13 @@ public class Goodstablebean implements Bean {
     }
 
     @Basic
-    @Column(name = "count", nullable = true)
-    public Integer getCount() {
-        return count;
+    @Column(name = "number", nullable = true)
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setCount(Integer left) {
-        this.count = left;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     @Basic
