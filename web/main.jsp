@@ -31,11 +31,11 @@
             <b class="navbar-brand">店铺</b>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/userServlet?day=0">素类</a></li>
-            <li><a href="/userServlet?day=1">荤类</a></li>
-            <li><a href="/userServlet?day=2">饮料</a></li>
-            <li><a href="/userServlet?day=2">历史订单</a></li>
-            <li><a href="/userInfo">查看订单</a></li>
+            <li><a href="#?day=0">素类</a></li>
+            <li><a href="#?day=1">荤类</a></li>
+            <li><a href="#?day=2">饮料</a></li>
+            <li><a href="#?day=2">历史订单</a></li>
+            <li><a href="#">查看订单</a></li>
         </ul>
     </div>
 </nav>
@@ -63,7 +63,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom navbar-left" role="navigation">
     <div class="container">
         <ul class="nav navbar-nav">
-            <li><a href="#">查看购物车</a></li>
+            <button class='btn btn-primary ' onclick='shop()'>查看购物车</button>
         </ul>
     </div>
 </nav>
@@ -72,20 +72,21 @@
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
+    //加载table的信息
     $(function () {
         $.ajax({
             url: "loadGoods",
             type: "post"
         }).success(function (data) {
             var obj = JSON.parse(data);
-            $.each(obj,function(i,ob){
+            $.each(obj, function (i, ob) {
                 var row = "<tr>" +
                         "<td>" + ob.name + "</td>" +
                         "<td><img src='" + ob.imgUrl + "'height='50' width='50'/></td>" +
                         "<td>" + ob.price + "</td>" +
                         "<td>" + ob.type + "</td>" +
                         "<td>" + ob.number + "</td>" +
-                        "<td><button class='btn btn-primary btn-buy'>来一份</button></td>" +
+                        "<td><button class='btn btn-primary btn-buy' onclick='buy("+ob.id+")'>来一份</button></td>" +
                         "</tr>";
                 $("#table tr:last").after(row);
             });
@@ -96,29 +97,15 @@
     });
 </script>
 <script>
-    <%--$(function () {--%>
-    <%--$('.btn-buy').click(function () {--%>
-    <%--var $tr = $(this).parent().prevAll();--%>
-    <%--var price = Number($tr.eq(1).html().trim());--%>
-
-    <%--if(money > price){--%>
-    <%--$.ajax({--%>
-    <%--url: "/buyServlet",--%>
-    <%--type: 'post',--%>
-    <%--data: {--%>
-    <%--foodid:$(this).attr('data-fid'),--%>
-    <%--price:price,--%>
-    <%--day:"${requestScope.title}"--%>
-    <%--}--%>
-    <%--}).success(function () {--%>
-    <%--alert("success");--%>
-    <%--location.reload("/userServelt?day=${requestScope.day}");--%>
-    <%--});--%>
-    <%--} else{--%>
-    <%--alert("您的余额不足。");--%>
-    <%--}--%>
-    <%--});--%>
-    <%--})--%>
+    //加入购物车
+    var goodlist = [];
+    function buy(id) {
+        goodlist.push(id);
+        alert(goodlist);
+    }
+    function shop(){
+        alert("12");
+    }
 </script>
 
 </body>
