@@ -1,5 +1,3 @@
-<%@ page import="java.util.List" %>
-<%@ page import="bean.Goodstablebean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -98,13 +96,21 @@
 </script>
 <script>
     //加入购物车
-    var goodlist = [];
     function buy(id) {
-        goodlist.push(id);
-        alert(goodlist);
+        $.ajax({
+            url: "addToCart",
+            type: "post",
+            data:{
+                goodsId:id
+            }
+        }).success(function(){
+            alert(id);
+        }).error(function(){
+
+        })
     }
     function shop(){
-        alert("12");
+        self.location="buy.jsp";
     }
 </script>
 

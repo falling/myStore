@@ -23,10 +23,13 @@
             <result name="success">success.jsp</result>
         </action>
         <action name="loadGoods" class="action.GoodsLoadAction" method="execute">
-
+        </action>
+        <action name="addToCart" class="action.CartAction" method="execute">
         </action>
 
-
+        <action name="payGoods" class="action.BuyAction" method="execute">
+            <result name="success">buy.jsp</result>
+        </action>
         <action name="register" class="action.RegisterAction" method="execute">
             <result name="success">success.jsp</result>
         </action>
