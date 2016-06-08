@@ -32,19 +32,26 @@ public class CartAction {
         if(action.equals("add")) {
             addToCart();
         }else if(action.equals("delete")){
-            List list = (List) ServletActionContext.getRequest().getSession().getAttribute("list");
-            list.remove(new Integer(goodsId));
+            deleteGoods();
         }
+    }
+
+    /**
+     * 删除购物车中的商品
+     */
+    private void deleteGoods() {
+        List list = (List) ServletActionContext.getRequest().getSession().getAttribute("goodsList");
+        list.remove(new Integer(goodsId));
     }
 
     /**
      * 添加到购物车
      */
     private void addToCart() {
-        List list = (List) ServletActionContext.getRequest().getSession().getAttribute("list");
+        List list = (List) ServletActionContext.getRequest().getSession().getAttribute("goodsList");
         if(list == null){
             list = new ArrayList<>();
-            ServletActionContext.getRequest().getSession().setAttribute("list",list);
+            ServletActionContext.getRequest().getSession().setAttribute("goodsList",list);
         }
         list.add(goodsId);
     }

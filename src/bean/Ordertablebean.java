@@ -14,10 +14,11 @@ public class Ordertablebean implements Bean {
     private String location;
     private Date time;
     private Double total;
-    private String state;
+    private Integer state;
     private String remark;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -48,7 +49,7 @@ public class Ordertablebean implements Bean {
     }
 
     @Basic
-    @Column(name = "time", nullable = true)
+    @Column(name = "time", nullable = false, insertable = false)
     public Date getTime() {
         return time;
     }
@@ -68,12 +69,12 @@ public class Ordertablebean implements Bean {
     }
 
     @Basic
-    @Column(name = "state", nullable = true, length = 255)
-    public String getState() {
+    @Column(name = "state", nullable = false, insertable = false)
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

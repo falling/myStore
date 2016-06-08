@@ -14,6 +14,7 @@ public class Itemtablebean implements Bean {
     private Integer number;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -10,9 +10,10 @@ import java.util.List;
 public interface DAO {
     /**
      * 保存一条记录
-     * @param bean 要增加的记录的bean
+     * @param bean
+     * @return 返回这条记录的ID
      */
-    void save(Bean bean);
+    int save(Bean bean);
 
     /**
      * 删除一条记录

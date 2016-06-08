@@ -17,6 +17,7 @@ public class Goodstablebean implements Bean {
     private Integer state;
     private String action;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -39,8 +39,9 @@
 </nav>
 
 <%
-    List<Integer> goodsList = (List<Integer>) request.getSession().getAttribute("list");
+    List<Integer> goodsList = (List<Integer>) request.getSession().getAttribute("goodsList");
     DAO dao = new DAOImpl();
+    double sum = 0;
     Goodstablebean bean = new Goodstablebean();
 %>
 
@@ -57,6 +58,7 @@
                 for (int good : goodsList) {
                     bean.setId(good);
                     bean = (Goodstablebean) dao.get(bean);
+                    sum += bean.getPrice();
         %>
         <tr>
             <td><%= bean.getName() %>
@@ -78,6 +80,48 @@
     </table>
 </div>
 
+
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigati on">
+    <div class="container">
+        <div class="navbar-nav">
+            <b class="navbar-brand">一共 <%=sum%> 元</b>
+        </div>
+        <div class="navbar-nav">
+            <button class="btn btn-danger btn-pay-money" data-toggle="modal" data-target="#paymoney">付款</button>
+        </div>
+    </div>
+</nav>
+
+
+<!-- 结算 -->
+<div class="modal fade" id="paymoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">付款</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    送货地点 <input type="text" name="title" class="form-control" id="location">
+                </div>
+                <div class="form-group">
+                    总价格：<%=sum%> 元
+                </div>
+                <div class="form-group">
+                    备注 <input type="text" name="title" class="form-control" id="remark">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="pay">付款</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
@@ -95,7 +139,27 @@
             }).success(function () {
                 location.reload();
             })
-        })
+        });
+
+        $("#pay").click(function () {
+            if ($('#location').val() == "") {
+                alert("请输入送货地址");
+            } else {
+                $.ajax({
+                    url: "pay",
+                    type: "post",
+                    data: {
+                        "bean.location": $('#location').val(),
+                        "bean.total":<%=sum%>,
+                        "bean.remark": $('#remark').val()
+                    }
+                }).success(function () {
+                    alert("success");
+                }).error(function () {
+                    alert("error");
+                })
+            }
+        });
     })
 </script>
 </body>

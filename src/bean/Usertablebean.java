@@ -1,5 +1,7 @@
 package bean;
 
+import org.hibernate.annotations.Generated;
+
 import javax.persistence.*;
 
 /**
@@ -16,6 +18,7 @@ public class Usertablebean implements Bean {
     private String name;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

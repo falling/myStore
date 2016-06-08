@@ -16,11 +16,12 @@ import java.util.List;
  */
 public class DAOImpl implements DAO {
     @Override
-    public void save(Bean bean) {
+    public int save(Bean bean) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.save(bean);
+        int id  = (int) session.save(bean);
         session.getTransaction().commit();
+        return id;
     }
 
     @Override
