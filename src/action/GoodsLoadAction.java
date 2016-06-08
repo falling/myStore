@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
+ * 返回json格式的商品信息
  * Created by falling on 2016/6/4.
  */
 public class GoodsLoadAction {

@@ -98,13 +98,14 @@
     //加入购物车
     function buy(id) {
         $.ajax({
-            url: "addToCart",
+            url: "cart",
             type: "post",
             data:{
-                goodsId:id
+                goodsId:id,
+                action:"add"
             }
         }).success(function(){
-            alert(id);
+            alert("已加入购物车");
         }).error(function(){
 
         })
