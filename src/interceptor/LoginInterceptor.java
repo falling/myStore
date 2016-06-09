@@ -19,9 +19,10 @@ public class LoginInterceptor extends AbstractInterceptor {
         HttpServletResponse resp = (HttpServletResponse) actionInvocation.getInvocationContext().get(ServletActionContext.HTTP_RESPONSE);
         Usertablebean user = (Usertablebean) req.getSession().getAttribute("user");
         if (!req.getServletPath().equals("/login.jsp")) {
-            if(user == null || !user.getPermission().equals("admin"))
-            req.setAttribute("msg","请先登陆管理员账号");
-            req.getRequestDispatcher("/login.jsp").forward(req,resp);
+            if (user == null || !user.getPermission().equals("admin")) {
+                req.setAttribute("msg", "请先登陆管理员账号");
+                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            }
         }
         return actionInvocation.invoke();
     }
