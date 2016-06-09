@@ -29,7 +29,6 @@
             <li><a href="#">未接订单</a></li>
             <li><a href="#">已接订单</a></li>
             <li><a href="#">已完成订单</a></li>
-            <li><a href="#">报表</a></li>
         </ul>
         <form class="navbar-form navbar-right">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addGood">

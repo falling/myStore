@@ -1,7 +1,9 @@
 package dao;
 
 import bean.Bean;
+import bean.Usertablebean;
 import org.hibernate.Session;
+import org.junit.Test;
 import util.HibernateUtil;
 
 import javax.persistence.Id;

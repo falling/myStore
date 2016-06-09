@@ -81,13 +81,15 @@
 </div>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigati on">
-    <div class="container">
-        <div class="navbar-nav">
-            <b class="navbar-brand">一共 <%=sum%> 元</b>
-        </div>
-        <div class="navbar-nav">
-            <button class="btn btn-danger btn-pay-money" data-toggle="modal" data-target="#paymoney">付款</button>
+<nav class="navbar navbar-default navbar-fixed-bottom " role="navigati on">
+    <div class="container ">
+        <div class="navbar-right">
+            <div class="navbar-nav">
+                <b class="navbar-brand">一共 <%=sum%> 元</b>
+            </div>
+            <div class="navbar-nav navbar-right">
+                <button class="btn btn-danger btn-pay-money" data-toggle="modal" data-target="#paymoney">付款</button>
+            </div>
         </div>
     </div>
 </nav>

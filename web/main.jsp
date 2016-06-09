@@ -29,7 +29,7 @@
             <a href="#" class="navbar-brand">店铺</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="orders.jsp">查看订单</a></li>
+            <li><a href="userorders.jsp">查看订单</a></li>
         </ul>
     </div>
 </nav>
@@ -53,11 +53,11 @@
     </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom navbar-left" role="navigation">
-    <div class="container">
-        <ul class="nav navbar-nav">
+<nav class="navbar navbar-default navbar-fixed-bottom " role="navigation">
+    <div class="container ">
+        <div class="navbar-right ">
             <button class='btn btn-primary ' onclick='shop()'>查看购物车</button>
-        </ul>
+        </div>
     </div>
 </nav>
 
