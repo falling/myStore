@@ -97,7 +97,7 @@ public class DAOImpl implements DAO {
         }
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        List list = session.createQuery("from " + c.getSimpleName() + sql).list();
+        List list = session.createQuery("from " + c.getSimpleName() + " " + sql).list();
         session.getTransaction().commit();
         return list;
     }

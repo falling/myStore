@@ -154,7 +154,8 @@
                         "bean.remark": $('#remark').val()
                     }
                 }).success(function () {
-                    alert("success");
+                    alert("购买成功");
+                    location.reload();
                 }).error(function () {
                     alert("error");
                 })

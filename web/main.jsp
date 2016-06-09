@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>用户点菜</title>
+    <title>购买页面</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -26,14 +26,10 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <b class="navbar-brand">店铺</b>
+            <a href="#" class="navbar-brand">店铺</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="#?day=0">素类</a></li>
-            <li><a href="#?day=1">荤类</a></li>
-            <li><a href="#?day=2">饮料</a></li>
-            <li><a href="#?day=2">历史订单</a></li>
-            <li><a href="#">查看订单</a></li>
+            <li><a href="orders.jsp">查看订单</a></li>
         </ul>
     </div>
 </nav>

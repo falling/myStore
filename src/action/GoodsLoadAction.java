@@ -1,25 +1,19 @@
 package action;
 
 import bean.Goodstablebean;
-import com.google.gson.Gson;
-import dao.DAOImpl;
-import org.apache.struts2.ServletActionContext;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import json.JsonRequest;
 
 /**
  * 返回json格式的商品信息
  * Created by falling on 2016/6/4.
  */
 public class GoodsLoadAction {
+
+    private String sql;
+
     public void execute() throws Exception {
-        HttpServletResponse response=ServletActionContext.getResponse();
-        Gson gson = new Gson();
-        List good = new DAOImpl().getAll(Goodstablebean.class," where state = 0 and number > 0 ");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().println(gson.toJson(good));
-        response.getWriter().flush();
-        response.getWriter().close();
+        sql = "where state = 0 and number > 0 ";
+        JsonRequest jsonRequest = new JsonRequest();
+        jsonRequest.returnAllWithJson(Goodstablebean.class, sql);
     }
 }
