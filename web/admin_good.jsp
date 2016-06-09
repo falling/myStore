@@ -26,9 +26,9 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="#">管理商品</a></li>
-            <li><a href="#">未接订单</a></li>
-            <li><a href="#">已接订单</a></li>
-            <li><a href="#">已完成订单</a></li>
+            <li><a href="adminorder.jsp?action=missedOrder">未接订单</a></li>
+            <li><a href="adminorder.jsp?action=unfinishedOrder">已接订单</a></li>
+            <li><a href="adminorder.jsp?action=completedOrder">已完成订单</a></li>
         </ul>
         <form class="navbar-form navbar-right">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addGood">

@@ -26,6 +26,9 @@ public class OrderAction {
                 Usertablebean user = (Usertablebean) ServletActionContext.getRequest().getSession().getAttribute("user");
                 sql = "where userId = " + user.getId();
                 break;
+            case "missedOrder"://未接订单
+                sql = "where state = 0";
+                break;
             case "unfinishedOrder"://未完成的订单
                 sql = "where state = 1";
                 break;

@@ -31,6 +31,10 @@
             <result name="success">success.jsp</result>
         </action>
 
+        <action name="dealOrder" class="action.OrderDealAction" method="execute">
+            <result name="success">success.jsp</result>
+        </action>
+
         <action name="loadGoods" class="action.GoodsLoadAction" method="execute"/>
         <action name="cart" class="action.CartAction" method="execute"/>
         <action name="loadOrder" class="action.OrderAction" method="execute"/>
