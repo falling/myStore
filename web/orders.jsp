@@ -36,7 +36,7 @@
 <div class="container">
     <div class="row">
         <div>
-            <table id="table" class="table table-hover">
+            <table id="OrderTable" class="table table-hover" data-toggle="modal" data-target="#DisplayDetails">
                 <tr>
                     <th>订单号</th>
                     <th>购买时间</th>
@@ -50,7 +50,7 @@
 </div>
 
 <!-- 订单详情的窗口 -->
-<div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="DisplayDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -96,7 +96,7 @@
                         "<td>" + ob.remark + "</td>" +
                         "<td>" + getState(ob.state) + "</td>" +
                         "</tr>";
-                $("#table tr:last").after(row);
+                $("#OrderTable tr:last").after(row);
             });
 
         }).error(function () {
@@ -121,12 +121,15 @@
 
     //显示订单详情
     function details(id) {
-        alert(id);
-
         $.ajax({
-            url: "loadGoods",
-            type: "id"
+            url: "details",
+            type: "post",
+            data:{
+                id:id
+            }
         }).success(function (data) {
+            //移除原来的数据
+            $("#detailsTable tr:not(:first)").remove();
             var obj = JSON.parse(data);
             $.each(obj, function (i, ob) {
                 var row = "<tr>" +
@@ -134,9 +137,8 @@
                         "<td><img src='" + ob.imgUrl + "'height='50' width='50'/></td>" +
                         "<td>" + ob.price + "</td>" +
                         "<td>" + ob.type + "</td>" +
-                        "<td><button class='btn btn-primary btn-buy' onclick='buy("+ob.id+")'>来一份</button></td>" +
                         "</tr>";
-                $("#table tr:last").after(row);
+                $("#detailsTable tr:last").after(row);
             });
 
         }).error(function () {

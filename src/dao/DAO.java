@@ -47,4 +47,11 @@ public interface DAO {
      * @return
      */
     List getAll(Class c,String sql);
+
+    /**
+     * 用于多表查询
+     * @param sql
+     * @return
+     */
+    List getAll(String sql);
 }

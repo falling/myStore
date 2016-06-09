@@ -35,6 +35,6 @@ public class OrderAction {
 
         }
         JsonRequest jsonRequest = new JsonRequest();
-        jsonRequest.returnAllWithJson(Ordertablebean.class, sql);
+        jsonRequest.returnResultWithJson(Ordertablebean.class, sql);
     }
 }

@@ -14,6 +14,6 @@ public class GoodsLoadAction {
     public void execute() throws Exception {
         sql = "where state = 0 and number > 0 ";
         JsonRequest jsonRequest = new JsonRequest();
-        jsonRequest.returnAllWithJson(Goodstablebean.class, sql);
+        jsonRequest.returnResultWithJson(Goodstablebean.class, sql);
     }
 }
