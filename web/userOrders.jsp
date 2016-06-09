@@ -104,6 +104,7 @@
         });
     });
 
+    //更具数值获取对应的ID
     function getState(state) {
         if (state == 0) {
             return "未接单";
