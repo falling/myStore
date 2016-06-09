@@ -29,7 +29,7 @@
             <a href="#" class="navbar-brand">店铺</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="userorders.jsp">查看订单</a></li>
+            <li><a href="customerorders.jsp">查看订单</a></li>
         </ul>
     </div>
 </nav>
