@@ -10,13 +10,15 @@ public class GoodsJoinItembean implements Bean {
     private Double price;
     private String type;
     private Integer number;
+    private String imgUrl;
 
-    public GoodsJoinItembean(int id, String name, Double price, String type, Integer number) {
+    public GoodsJoinItembean(int id, String name, Double price, String type, Integer number, String imgUrl) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.type = type;
         this.number = number;
+        this.imgUrl = imgUrl;
     }
 
     @Override
@@ -59,5 +61,13 @@ public class GoodsJoinItembean implements Bean {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

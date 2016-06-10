@@ -11,8 +11,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>var clickState</script>
     <title>用户订单</title>
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -70,6 +70,12 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                <script>
+                    if(clickState ==1){
+                        alert("1");
+                        document.write("<button id='finish' type='button' class='btn btn-primary'>已经完成</button>");
+                    }
+                </script>
             </div>
         </div>
     </div>
@@ -89,7 +95,7 @@
         }).success(function (data) {
             var obj = JSON.parse(data);
             $.each(obj, function (i, ob) {
-                var row = "<tr onclick=details(" + ob.id + ")>" +
+                var row = "<tr onclick=details("+ob.id+","+ob.state+")>" +
                         "<td>" + ob.id + "</td>" +
                         "<td>" + getTime(ob.time) + "</td>" +
                         "<td>" + ob.total + "</td>" +
@@ -122,7 +128,8 @@
     }
 
     //显示订单详情
-    function details(id) {
+    function details(id,state) {
+        clickState=state;
         $.ajax({
             url: "details",
             type: "post",

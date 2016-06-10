@@ -28,7 +28,7 @@ public class DetailsAction {
     public void execute() throws Exception {
         DAOImpl dao = new DAOImpl();
         String sql = "select new " + GoodsJoinItembean.class.getCanonicalName() +
-                " (item.orderId,goods.name,goods.price,goods.type,item.number) " +
+                " (item.orderId,goods.name,goods.price,goods.type,item.number,goods.imgUrl) " +
                 "from bean.Goodstablebean goods,bean.Itemtablebean item where goods.id=item.goodsId and item.orderId = " +id;
         List list = dao.getAll(sql);
         new JsonRequest().returnResultWithJson(list);
