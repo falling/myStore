@@ -85,6 +85,7 @@
 </div>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/myJs.js"></script>
 <script>
     var clickId;
     //加载table的信息
@@ -129,23 +130,6 @@
             });
         })
     });
-
-    //更具数值获取对应的ID
-    function getState(state) {
-        if (state == 0) {
-            return "未接单";
-        } else if (state == 1) {
-            return "已接单";
-        } else if (state == 2) {
-            return "已经完成";
-        }
-    }
-
-    //格式化输出时间
-    function getTime(time) {
-        var t = new Date(time);
-        return t.getFullYear() + "年" + (t.getMonth() + 1) + "月" + t.getDate() + "日" + " " + t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
-    }
 
     //显示订单详情
     function details(id) {

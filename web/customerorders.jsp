@@ -11,7 +11,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>var clickState</script>
     <title>用户订单</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -69,13 +68,8 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
-                <script>
-                    if(clickState ==1){
-                        alert("1");
-                        document.write("<button id='finish' type='button' class='btn btn-primary'>已经完成</button>");
-                    }
-                </script>
+                <button id='finish' type='button' class='btn btn-primary'>已完成</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
             </div>
         </div>
     </div>
@@ -83,19 +77,22 @@
 
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/myJs.js"></script>
+<script>var clickId</script>
+
 <script>
     //加载table的信息
     $(function () {
         $.ajax({
             url: "loadOrder",
             type: "post",
-            data:{
-                action:"userOrder"
+            data: {
+                action: "userOrder"
             }
         }).success(function (data) {
             var obj = JSON.parse(data);
             $.each(obj, function (i, ob) {
-                var row = "<tr onclick=details("+ob.id+","+ob.state+")>" +
+                var row = "<tr onclick=details(" + ob.id + "," + ob.state + ")>" +
                         "<td>" + ob.id + "</td>" +
                         "<td>" + getTime(ob.time) + "</td>" +
                         "<td>" + ob.total + "</td>" +
@@ -108,33 +105,37 @@
         }).error(function () {
             alert("failed");
         });
+
+        $("#finish").click(function(){
+            $.ajax({
+                url: "dealOrder",
+                type:"post",
+                data:{
+                    "bean.id":clickId,
+                    "action":"finish"
+                }
+            }).success(function(){
+                self.location.reload();
+            }).error(function () {
+                alert("failed");
+            })
+        })
     });
 
-    //更具数值获取对应的ID
-    function getState(state) {
-        if (state == 0) {
-            return "未接单";
-        } else if (state == 1) {
-            return "已接单";
-        } else if (state == 2) {
-            return "已经完成";
-        }
-    }
-
-    //格式化输出时间
-    function getTime(time) {
-        var t = new Date(time);
-        return t.getFullYear() + "年" + (t.getMonth() + 1) + "月" + t.getDate() + "日" + " " + t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
-    }
 
     //显示订单详情
-    function details(id,state) {
-        clickState=state;
+    function details(id, state) {
+        clickId=id;
+        if(state!=1){
+            $('#finish').hide();
+        }else{
+            $('#finish').show();
+        }
         $.ajax({
             url: "details",
             type: "post",
-            data:{
-                id:id
+            data: {
+                id: id
             }
         }).success(function (data) {
             //移除原来的数据
