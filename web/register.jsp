@@ -42,7 +42,7 @@
                 姓名:<input type="text" name="user.name" class="form-control" id="name">
             </div>
             <input type="button" value="返回" class="btn btn-default pull-right" onclick="location='login.jsp'">
-            <input type="submit" value="注册" class="btn btn-primary pull-right" >
+            <input type="button" value="注册" class="btn btn-primary pull-right" id="sub">
         </form>
     </div>
 </div>
@@ -52,20 +52,20 @@
 
 <script>
 
-    $('#form').submit(function () {
-        if(check()){
+    $('#sub').click(function () {
+        if (check()) {
             $.ajax({
                 url: "register",
                 type: 'post',
                 data: {
-                    "bean.username":$('#username').val(),
-                    "bean.password":$('#password').val(),
-                    "bean.tel":$('#tel').val(),
-                    "bean.name":$('#name').val()
+                    "bean.username": $('#username').val(),
+                    "bean.password": $('#password').val(),
+                    "bean.tel": $('#tel').val(),
+                    "bean.name": $('#name').val()
                 }
-            }).success(function(){
+            }).success(function () {
                 alert("注册成功");
-                self.location ='login.jsp';
+                self.location = 'login.jsp';
             }).error(function () {
                 alert("注册失败，可能有同名的用户");
             })
