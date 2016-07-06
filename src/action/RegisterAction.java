@@ -22,7 +22,7 @@ public class RegisterAction {
     }
 
     public String execute() throws Exception {
-        UserService userService = (UserService) SpringGetBeanUtil.getBean("LoginService");
+        UserService userService = (UserService) SpringGetBeanUtil.getBean("userService");
 
         if (userService.register(bean)) {
             return "success";

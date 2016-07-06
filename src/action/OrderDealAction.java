@@ -2,6 +2,8 @@ package action;
 
 import bean.Ordertablebean;
 import dao.DAOImpl;
+import service.OrderService;
+import util.SpringGetBeanUtil;
 
 /**
  * Created by falling on 2016/6/9.
@@ -27,13 +29,8 @@ public class OrderDealAction {
     }
 
     public String execute(){
-        if (action.equals("accept")){
-            bean.setState(1);
-            new DAOImpl().update(bean);
-        }else if(action.equals("finish")){
-            bean.setState(2);
-            new DAOImpl().update(bean);
-        }
+        OrderService service = (OrderService) SpringGetBeanUtil.getBean("orderService");
+        service.updateOrderByAction(bean,action);
         return "success";
     }
 }

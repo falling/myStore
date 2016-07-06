@@ -4,6 +4,9 @@ import bean.Ordertablebean;
 import bean.Usertablebean;
 import json.JsonRequest;
 import org.apache.struts2.ServletActionContext;
+import service.OrderService;
+import util.SpringGetBeanUtil;
+
 /**
  * order相关的请求
  * Created by falling on 2016/6/9.
@@ -21,23 +24,9 @@ public class OrderAction {
     }
 
     public void execute() throws Exception {
-        switch (action) {
-            case "userOrder"://用户的订单
-                Usertablebean user = (Usertablebean) ServletActionContext.getRequest().getSession().getAttribute("user");
-                sql = "where userId = " + user.getId();
-                break;
-            case "missedOrder"://未接订单
-                sql = "where state = 0";
-                break;
-            case "unfinishedOrder"://未完成的订单
-                sql = "where state = 1";
-                break;
-            case "completedOrder"://完成的订单
-                sql = "where state = 2";
-                break;
-
-        }
+        OrderService service = (OrderService) SpringGetBeanUtil.getBean("orderService");
         JsonRequest jsonRequest = new JsonRequest();
-        jsonRequest.returnResultWithJson(Ordertablebean.class, sql);
+        jsonRequest.returnResultWithJson(service.getByAction(action));
+
     }
 }

@@ -14,11 +14,6 @@ import java.util.List;
  */
 public class JsonRequest {
 
-    public void returnResultWithJson(Class c, String sql) throws IOException {
-        List good = new DAOImpl().getAll(c, sql);
-        returnResultWithJson(good);
-    }
-
     public void returnResultWithJson(Object object) throws IOException {
         Gson gson = new Gson();
         write(gson.toJson(object));

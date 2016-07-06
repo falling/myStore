@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by falling on 16/7/5.
  */
 @Transactional
-@Service("LoginService")
+@Service("userService")
 public class UserService {
     @Autowired
     private UserDAO dao;

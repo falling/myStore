@@ -7,6 +7,9 @@ import dao.DAO;
 import dao.DAOImpl;
 import json.JsonRequest;
 import org.junit.Test;
+import service.GeneralService;
+import service.OrderService;
+import util.SpringGetBeanUtil;
 
 import java.util.List;
 
@@ -26,11 +29,7 @@ public class DetailsAction {
     }
 
     public void execute() throws Exception {
-        DAOImpl dao = new DAOImpl();
-        String sql = "select new " + GoodsJoinItembean.class.getCanonicalName() +
-                " (item.orderId,goods.name,goods.price,goods.type,item.number,goods.imgUrl) " +
-                "from bean.Goodstablebean goods,bean.Itemtablebean item where goods.id=item.goodsId and item.orderId = " +id;
-        List list = dao.getAll(sql);
-        new JsonRequest().returnResultWithJson(list);
+        OrderService service = (OrderService) SpringGetBeanUtil.getBean("orderService");
+        new JsonRequest().returnResultWithJson(service.getDetails(id));
     }
 }

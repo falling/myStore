@@ -3,7 +3,9 @@ package dao;
 import bean.Bean;
 import bean.Usertablebean;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import util.HibernateUtil;
 
@@ -17,29 +19,32 @@ import java.util.List;
  * 通用DAO实现最基本的增删查改
  * Created by falling on 2016/6/1.
  */
-@Component("general")
+@Component("dao")
 public class DAOImpl implements DAO {
+
+    @Autowired
+    protected SessionFactory sessionFactory;
+
+    Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
+
     @Override
     public int save(Bean bean) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        int id  = (int) session.save(bean);
-        session.getTransaction().commit();
-        return id;
+        return (int) getSession().save(bean);
     }
 
     @Override
     public void delete(Bean bean) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
+        Session session = getSession();
         Object ob = session.get(bean.getClass(), bean.getId());
         session.delete(ob);
-        session.getTransaction().commit();
     }
 
     @Override
     public void update(Bean bean) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = getSession();
         int PKValue = -1;
 
         //获取PK的值。
@@ -54,7 +59,6 @@ public class DAOImpl implements DAO {
             }
         }
 
-        session.beginTransaction();
         Object oldBean = session.get(bean.getClass(), PKValue);
 
         if (oldBean != null) {
@@ -71,52 +75,23 @@ public class DAOImpl implements DAO {
                 }
             }
             session.update(oldBean);
-            session.getTransaction().commit();
         }
 
     }
 
     @Override
     public Object get(Bean bean) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        Object object = session.get(bean.getClass(), bean.getId());
-        session.getTransaction().commit();
-        return object;
+        return getSession().get(bean.getClass(), bean.getId());
     }
 
     @Override
-    public Object getOne(Class c, String sql) {
+    public Object getOne(Class c) {
         return null;
     }
 
     @Override
     public List getAll(Class c) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List list = session.createQuery("from " + c.getSimpleName() + " where state = 0").list();
-        session.getTransaction().commit();
-        return list;
+        return getSession().createQuery("from " + c.getSimpleName() + " where state = 0").list();
     }
 
-    @Override
-    public List getAll(Class c,String sql) {
-        if(sql ==null){
-            return getAll(c);
-        }
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List list = session.createQuery("from " + c.getSimpleName() + " " + sql).list();
-        session.getTransaction().commit();
-        return list;
-    }
-
-    @Override
-    public List getAll(String sql){
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List list = session.createQuery(sql).list();
-        session.getTransaction().commit();
-        return list;
-    }
 }

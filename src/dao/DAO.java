@@ -40,10 +40,9 @@ public interface DAO {
     /**
      * 根据sql语句获取一个对象
      * @param c
-     * @param sql
      * @return
      */
-    Object getOne(Class c,String sql);
+    Object getOne(Class c);
 
     /**
      * 获取全部的信息
@@ -52,18 +51,4 @@ public interface DAO {
 
     List getAll(Class c);
 
-    /**
-     * 根据条件获取list
-     * @param c
-     * @param sql where开始的sql语句
-     * @return
-     */
-    List getAll(Class c,String sql);
-
-    /**
-     * 用于多表查询
-     * @param sql
-     * @return
-     */
-    List getAll(String sql);
 }

@@ -1,7 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Goodstablebean" %>
 <%@ page import="dao.DAOImpl" %>
-<%@ page import="dao.DAO" %><%--
+<%@ page import="dao.DAO" %>
+<%@ page import="service.GeneralService" %>
+<%@ page import="util.SpringGetBeanUtil" %><%--
   Created by IntelliJ IDEA.
   User: falling
   Date: 2016/6/7
@@ -40,7 +42,7 @@
 
 <%
     List<Integer> goodsList = (List<Integer>) request.getSession().getAttribute("goodsList");
-    DAO dao = new DAOImpl();
+    GeneralService service = (GeneralService) SpringGetBeanUtil.getBean("generalService");
     double sum = 0;
     Goodstablebean bean = new Goodstablebean();
 %>
@@ -57,7 +59,7 @@
             if (goodsList != null) {
                 for (int good : goodsList) {
                     bean.setId(good);
-                    bean = (Goodstablebean) dao.get(bean);
+                    bean = (Goodstablebean) service.get(bean);
                     sum += bean.getPrice();
         %>
         <tr>

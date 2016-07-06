@@ -4,6 +4,8 @@ import bean.Goodstablebean;
 import dao.DAO;
 import dao.DAOImpl;
 import org.apache.struts2.ServletActionContext;
+import service.GeneralService;
+import util.SpringGetBeanUtil;
 
 import java.util.List;
 
@@ -23,21 +25,22 @@ public class GoodsAction {
     }
 
     public String execute() throws Exception {
+        GeneralService service = (GeneralService) SpringGetBeanUtil.getBean("generalService");
         if (bean == null) {
-            List good = new DAOImpl().getAll(Goodstablebean.class);
+            List good = service.getAll(Goodstablebean.class);
             ServletActionContext.getRequest().setAttribute("goodsList", good);
             return "load";
         }
 
         switch (bean.getAction()) {
             case "add":
-                new DAOImpl().save(bean);
+                service.save(bean);
                 break;
             case "delete":
-                new DAOImpl().delete(bean);
+                service.delete(bean);
                 break;
             case "update":
-                new DAOImpl().update(bean);
+                service.update(bean);
                 break;
             default:
                 return "false";

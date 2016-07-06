@@ -22,7 +22,7 @@ public class LoginAction {
     }
 
     public String execute() throws Exception {
-        UserService service = (UserService) SpringGetBeanUtil.getBean("LoginService");
+        UserService service = (UserService) SpringGetBeanUtil.getBean("userService");
         Usertablebean loginUser = service.login(user);
         if (loginUser != null) {
             ServletActionContext.getRequest().getSession().setAttribute("user", loginUser);

@@ -2,8 +2,6 @@ package dao;
 
 import bean.Usertablebean;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,17 +10,8 @@ import java.util.List;
  * Created by falling on 2016/6/2.
  */
 
-@Component("userDAO")
+@Component
 public class UserDAO extends DAOImpl {
-
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    private Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
     /**
      * 登陆
      *

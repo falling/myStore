@@ -1,7 +1,12 @@
 package action;
 
-import bean.Goodstablebean;
+import dao.DAOImpl;
 import json.JsonRequest;
+import service.GeneralService;
+import service.GoodsService;
+import util.SpringGetBeanUtil;
+
+import java.util.List;
 
 /**
  * 返回json格式的商品信息
@@ -12,8 +17,10 @@ public class GoodsLoadAction {
     private String sql;
 
     public void execute() throws Exception {
-        sql = "where state = 0 and number > 0 ";
+        GoodsService service = (GoodsService) SpringGetBeanUtil.getBean("goodsService");
+        List goods = service.loadGoods();
         JsonRequest jsonRequest = new JsonRequest();
-        jsonRequest.returnResultWithJson(Goodstablebean.class, sql);
+
+        jsonRequest.returnResultWithJson(goods);
     }
 }
