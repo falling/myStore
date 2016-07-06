@@ -4,6 +4,7 @@ import bean.Bean;
 import bean.Usertablebean;
 import org.hibernate.Session;
 import org.junit.Test;
+import org.springframework.stereotype.Component;
 import util.HibernateUtil;
 
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import java.util.List;
  * 通用DAO实现最基本的增删查改
  * Created by falling on 2016/6/1.
  */
+@Component("general")
 public class DAOImpl implements DAO {
     @Override
     public int save(Bean bean) {
@@ -81,6 +83,11 @@ public class DAOImpl implements DAO {
         Object object = session.get(bean.getClass(), bean.getId());
         session.getTransaction().commit();
         return object;
+    }
+
+    @Override
+    public Object getOne(Class c, String sql) {
+        return null;
     }
 
     @Override

@@ -1,11 +1,15 @@
 package action;
 
 import bean.Usertablebean;
-import dao.UserDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import service.UserService;
+import util.SpringGetBeanUtil;
 
 /**
  * Created by falling on 2016/6/3.
  */
+
 public class RegisterAction {
     private Usertablebean bean;
 
@@ -18,7 +22,9 @@ public class RegisterAction {
     }
 
     public String execute() throws Exception {
-        if (new UserDAO().register(bean)) {
+        UserService userService = (UserService) SpringGetBeanUtil.getBean("LoginService");
+
+        if (userService.register(bean)) {
             return "success";
         }
         return "error";

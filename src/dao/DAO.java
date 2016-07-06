@@ -1,6 +1,8 @@
 package dao;
 
 import bean.Bean;
+import org.omg.CORBA.OBJ_ADAPTER;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -34,10 +36,20 @@ public interface DAO {
      */
     Object get(Bean bean);
 
+
+    /**
+     * 根据sql语句获取一个对象
+     * @param c
+     * @param sql
+     * @return
+     */
+    Object getOne(Class c,String sql);
+
     /**
      * 获取全部的信息
      * @return
      */
+
     List getAll(Class c);
 
     /**
