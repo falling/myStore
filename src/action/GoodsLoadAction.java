@@ -14,8 +14,6 @@ import java.util.List;
  */
 public class GoodsLoadAction {
 
-    private String sql;
-
     public void execute() throws Exception {
         GoodsService service = (GoodsService) SpringGetBeanUtil.getBean("goodsService");
         List goods = service.loadGoods();

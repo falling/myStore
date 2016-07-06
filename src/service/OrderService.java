@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.print.DocFlavor;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ public class OrderService {
     @Autowired
     private OrdersDAO dao;
 
-    public List getByAction(String action) {
+    public List getOrderByAction(String action) {
         return dao.getForList(action);
     }
 
