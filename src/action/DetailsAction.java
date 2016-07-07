@@ -1,17 +1,8 @@
 package action;
 
-import bean.GoodsJoinItembean;
-import bean.Goodstablebean;
-import bean.Itemtablebean;
-import dao.DAO;
-import dao.DAOImpl;
 import json.JsonRequest;
-import org.junit.Test;
-import service.GeneralService;
 import service.OrderService;
 import util.SpringGetBeanUtil;
-
-import java.util.List;
 
 /**
  * 订单详情

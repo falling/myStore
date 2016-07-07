@@ -1,13 +1,10 @@
 package dao;
 
 import bean.Bean;
-import bean.Usertablebean;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import util.HibernateUtil;
 
 import javax.persistence.Id;
 import java.lang.reflect.Field;

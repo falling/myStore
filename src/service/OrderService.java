@@ -1,6 +1,5 @@
 package service;
 
-import bean.Bean;
 import bean.Ordertablebean;
 import dao.OrdersDAO;
 import org.springframework.beans.factory.annotation.Autowired;

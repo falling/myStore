@@ -39,7 +39,10 @@
                 <tr>
                     <th>订单号</th>
                     <th>购买时间</th>
+                    <th>送货地址</th>
                     <th>总价格</th>
+                    <th>姓名</th>
+                    <th>联系方式</th>
                     <th>备注</th>
                     <th>状态</th>
                 </tr>
@@ -95,7 +98,10 @@
                 var row = "<tr onclick=details(" + ob.id + "," + ob.state + ")>" +
                         "<td>" + ob.id + "</td>" +
                         "<td>" + getTime(ob.time) + "</td>" +
+                        "<td>" + ob.location + "</td>" +
                         "<td>" + ob.total + "</td>" +
+                        "<td>" + ob.username + "</td>" +
+                        "<td>" + ob.tel + "</td>" +
                         "<td>" + ob.remark + "</td>" +
                         "<td>" + getState(ob.state) + "</td>" +
                         "</tr>";
@@ -106,15 +112,15 @@
             alert("failed");
         });
 
-        $("#finish").click(function(){
+        $("#finish").click(function () {
             $.ajax({
                 url: "dealOrder",
-                type:"post",
-                data:{
-                    "bean.id":clickId,
-                    "action":"finish"
+                type: "post",
+                data: {
+                    "bean.id": clickId,
+                    "action": "finish"
                 }
-            }).success(function(){
+            }).success(function () {
                 self.location.reload();
             }).error(function () {
                 alert("failed");
@@ -125,10 +131,13 @@
 
     //显示订单详情
     function details(id, state) {
-        clickId=id;
-        if(state!=1){
+
+        //移除原来的数据
+        $("#detailsTable tr:not(:first)").remove();
+        clickId = id;
+        if (state != 1) {
             $('#finish').hide();
-        }else{
+        } else {
             $('#finish').show();
         }
         $.ajax({
@@ -138,8 +147,6 @@
                 id: id
             }
         }).success(function (data) {
-            //移除原来的数据
-            $("#detailsTable tr:not(:first)").remove();
             var obj = JSON.parse(data);
             $.each(obj, function (i, ob) {
                 var row = "<tr>" +

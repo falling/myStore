@@ -46,6 +46,7 @@
                     <th>购买时间</th>
                     <th>送货地址</th>
                     <th>总价格</th>
+                    <th>姓名</th>
                     <th>联系方式</th>
                     <th>备注</th>
                     <th>状态</th>
@@ -107,6 +108,8 @@
                         "<td>" + getTime(ob.time) + "</td>" +
                         "<td>" + ob.location + "</td>" +
                         "<td>" + ob.total + "</td>" +
+                        "<td>" + ob.username + "</td>" +
+                        "<td>" + ob.tel + "</td>" +
                         "<td>" + ob.remark + "</td>" +
                         "<td>" + getState(ob.state) + "</td>" +
                         "</tr>";
