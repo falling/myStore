@@ -2,8 +2,8 @@ package action;
 
 import org.apache.struts2.ServletActionContext;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by falling on 2016/6/7.
@@ -28,10 +28,10 @@ public class CartAction {
         this.action = action;
     }
 
-    public void execute() throws Exception{
-        if(action.equals("add")) {
+    public void execute() throws Exception {
+        if (action.equals("add")) {
             addToCart();
-        }else if(action.equals("delete")){
+        } else if (action.equals("delete")) {
             deleteGoods();
         }
     }
@@ -40,19 +40,33 @@ public class CartAction {
      * 删除购物车中的商品
      */
     private void deleteGoods() {
-        List list = (List) ServletActionContext.getRequest().getSession().getAttribute("goodsList");
-        list.remove(new Integer(goodsId));
+        Map goodsMap = (Map) ServletActionContext.getRequest().getSession().getAttribute("goodsMap");
+        Integer number = (Integer) goodsMap.get(goodsId);
+        if (number != null && number > 0) {
+            if (number == 1) {
+                goodsMap.remove(goodsId);
+            } else {
+                number--;
+                goodsMap.put(goodsId, number);
+            }
+        }
     }
 
     /**
      * 添加到购物车
      */
     private void addToCart() {
-        List list = (List) ServletActionContext.getRequest().getSession().getAttribute("goodsList");
-        if(list == null){
-            list = new ArrayList<>();
-            ServletActionContext.getRequest().getSession().setAttribute("goodsList",list);
+        Map goodsMap = (Map) ServletActionContext.getRequest().getSession().getAttribute("goodsMap");
+        //如果没有购物信息,创建一个新的map对象。
+        if (goodsMap == null) {
+            goodsMap = new HashMap();
+            ServletActionContext.getRequest().getSession().setAttribute("goodsMap", goodsMap);
         }
-        list.add(goodsId);
+        Integer number = (Integer) goodsMap.get(goodsId);
+        if (number == null) {
+            number = 0;
+        }
+        number++;
+        goodsMap.put(goodsId, number);
     }
 }

@@ -3,7 +3,9 @@
 <%@ page import="dao.DAOImpl" %>
 <%@ page import="dao.DAO" %>
 <%@ page import="service.GeneralService" %>
-<%@ page import="util.SpringGetBeanUtil" %><%--
+<%@ page import="util.SpringGetBeanUtil" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %><%--
   Created by IntelliJ IDEA.
   User: falling
   Date: 2016/6/7
@@ -41,7 +43,7 @@
 </nav>
 
 <%
-    List<Integer> goodsList = (List<Integer>) request.getSession().getAttribute("goodsList");
+    Map<Integer, Integer> goodsMap = (Map) request.getSession().getAttribute("goodsMap");
     GeneralService service = (GeneralService) SpringGetBeanUtil.getBean("generalService");
     double sum = 0;
     Goodstablebean bean = new Goodstablebean();
@@ -52,15 +54,16 @@
         <tr>
             <th>商品名称</th>
             <th>图片</th>
-            <th>价格</th>
+            <th>单价</th>
+            <th>数量</th>
             <th>选项</th>
         </tr>
         <%
-            if (goodsList != null) {
-                for (int good : goodsList) {
-                    bean.setId(good);
+            if (goodsMap != null) {
+                for (Map.Entry entry : goodsMap.entrySet()) {
+                    bean.setId((Integer) entry.getKey());
                     bean = (Goodstablebean) service.get(bean);
-                    sum += bean.getPrice();
+                    sum += bean.getPrice() * (int) entry.getValue();
         %>
         <tr>
             <td><%= bean.getName() %>
@@ -68,6 +71,8 @@
             <td><img src="<%= bean.getImgUrl() %>" height="50" width="50"/>
             </td>
             <td><%= bean.getPrice()%>
+            </td>
+            <td><%= entry.getValue()%>
             </td>
             <td data-goodId= <%= bean.getId() %>>
                 <button class="btn btn-danger btn-delete-good">删除</button>
