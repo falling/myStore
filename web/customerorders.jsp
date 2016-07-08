@@ -65,7 +65,8 @@
                     <tr>
                         <th>食品名称</th>
                         <th>图片</th>
-                        <th>售价</th>
+                        <th>单价</th>
+                        <th>数量</th>
                         <th>类型</th>
                     </tr>
                 </table>
@@ -153,6 +154,7 @@
                         "<td>" + ob.name + "</td>" +
                         "<td><img src='" + ob.imgUrl + "'height='50' width='50'/></td>" +
                         "<td>" + ob.price + "</td>" +
+                        "<td>" + ob.number + "</td>" +
                         "<td>" + ob.type + "</td>" +
                         "</tr>";
                 $("#detailsTable tr:last").after(row);

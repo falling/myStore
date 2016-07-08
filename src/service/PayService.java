@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by falling on 16/7/6.
@@ -17,12 +17,15 @@ import java.util.List;
 public class PayService {
     @Autowired
     private DAOImpl dao;
-    public boolean buy(Ordertablebean bean, List<Integer> goodsList){
+
+    public boolean buy(Ordertablebean bean, Map<Integer, Integer> goodsMap) {
         dao.save(bean);
-        Itemtablebean itembean = new Itemtablebean();
-        itembean.setOrderId(bean.getId());
-        for (Integer goodsId : goodsList) {
-            itembean.setGoodsId(goodsId);
+
+        for (Map.Entry<Integer, Integer> goodsKV : goodsMap.entrySet()) {
+            Itemtablebean itembean = new Itemtablebean();
+            itembean.setOrderId(bean.getId());
+            itembean.setGoodsId(goodsKV.getKey());
+            itembean.setNumber(goodsKV.getValue());
             dao.save(itembean);
         }
         return true;

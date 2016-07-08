@@ -14,13 +14,8 @@
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <context:component-scan base-package="dao" />
-    <context:component-scan base-package="service" />
-    <context:component-scan base-package="action"/>
-    <context:component-scan base-package="bean"/>
-    <tx:annotation-driven transaction-manager="transactionManager" />
-
-
-
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <context:component-scan base-package="dao"/>
+    <context:component-scan base-package="service"/>
 
 </beans>

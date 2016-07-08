@@ -7,6 +7,7 @@ import service.PayService;
 import util.SpringGetBeanUtil;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by falling on 2016/6/8.
@@ -26,11 +27,11 @@ public class PayAction {
         PayService payService = (PayService) SpringGetBeanUtil.getBean("payService");
 
         Usertablebean user = (Usertablebean) ServletActionContext.getRequest().getSession().getAttribute("user");
-        List<Integer> goodsList = (List<Integer>) ServletActionContext.getRequest().getSession().getAttribute("goodsList");
+        Map<Integer,Integer> goodsMap = (Map) ServletActionContext.getRequest().getSession().getAttribute("goodsMap");
 
         bean.setUserId(user.getId());
-        payService.buy(bean,goodsList);
-        ServletActionContext.getRequest().getSession().setAttribute("goodsList",null);
+        payService.buy(bean,goodsMap);
+        ServletActionContext.getRequest().getSession().setAttribute("goodsMap",null);
         return "success";
     }
 }
