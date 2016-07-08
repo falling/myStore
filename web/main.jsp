@@ -33,13 +33,11 @@
         </ul>
         <ul class="nav navbar-right">
             <li><a href="logout">注销</a></li>
-            <li><a href="#">个人中心</a></li>
+            <li><a href="userInfomation.jsp">个人信息</a></li>
         </ul>
     </div>
 </nav>
 
-
-<%--<h1 class="text-primary text-center">${requestScope.title}</h1>--%>
 
 <div class="container">
     <div class="row">

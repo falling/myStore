@@ -42,6 +42,6 @@
         <action name="cart" class="action.CartAction" method="execute"/>
         <action name="loadOrder" class="action.OrderAction" method="execute"/>
         <action name="details" class="action.DetailsAction" method="execute"/>
-
+        <action name="updateUserInfo" class="action.UserInfoUpdateAction" method="execute"/>
     </package>
 </struts>
