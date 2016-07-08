@@ -2,7 +2,6 @@ package util;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import service.UserService;
 
 /**
  * Created by falling on 16/7/6.

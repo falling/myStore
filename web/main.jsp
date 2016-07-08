@@ -31,6 +31,10 @@
         <ul class="nav navbar-nav">
             <li><a href="customerorders.jsp">查看订单</a></li>
         </ul>
+        <ul class="nav navbar-right">
+            <li><a href="logout">注销</a></li>
+            <li><a href="#">个人中心</a></li>
+        </ul>
     </div>
 </nav>
 
