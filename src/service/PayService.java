@@ -2,7 +2,7 @@ package service;
 
 import bean.Itemtablebean;
 import bean.Ordertablebean;
-import dao.DAOImpl;
+import dao.GoodsDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.util.Map;
 @Service("payService")
 public class PayService {
     @Autowired
-    private DAOImpl dao;
+    private GoodsDAO dao;
 
     public boolean buy(Ordertablebean bean, Map<Integer, Integer> goodsMap) {
         dao.save(bean);
@@ -27,6 +27,7 @@ public class PayService {
             itembean.setGoodsId(goodsKV.getKey());
             itembean.setNumber(goodsKV.getValue());
             dao.save(itembean);
+            dao.sellOut(itembean);
         }
         return true;
     }

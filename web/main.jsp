@@ -47,6 +47,7 @@
                     <th>食品名称</th>
                     <th>图片</th>
                     <th>售价</th>
+                    <th>剩余数量</th>
                     <th>类型</th>
                     <th>选项</th>
                 </tr>
@@ -79,6 +80,7 @@
                         "<td>" + ob.name + "</td>" +
                         "<td><img src='" + ob.imgUrl + "'height='50' width='50'/></td>" +
                         "<td>" + ob.price + "</td>" +
+                        "<td>" + ob.number + "</td>" +
                         "<td>" + ob.type + "</td>" +
                         "<td><button class='btn btn-primary btn-buy' onclick='buy("+ob.id+")'>来一份</button></td>" +
                         "</tr>";

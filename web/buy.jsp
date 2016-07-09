@@ -166,7 +166,7 @@
                     alert("购买成功");
                     location.reload();
                 }).error(function () {
-                    alert("error");
+                    alert("商品余量不足");
                 })
             }
         });
