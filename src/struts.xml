@@ -5,7 +5,9 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <constant name="struts.action.excludePattern" value="/druid/*" />
     <package name="action" extends="struts-default">
+
 
         <interceptors>
             <interceptor name="myInterceptor" class="interceptor.LoginInterceptor"/>
